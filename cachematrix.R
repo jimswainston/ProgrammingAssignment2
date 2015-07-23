@@ -1,14 +1,54 @@
-## Put comments here that give an overall description of what your
-## functions do
+## These functions can be used to cache the inverse of an invertable matrix
 
-## Write a short comment describing this function
+## The makeCacheMatrix function Creates a special matrix object 
+## that can cache its inverse. It stores a number of other 
+## functions for setting and accessing the value of the cached
+## inverse matrix.
+##
+## Args:
+##    x: a matrix that can be inverted
+##
+## Returns:
+##
 
 makeCacheMatrix <- function(x = matrix()) {
+  
+  i <- NULL # variable to cache inverse of matrix.  
+  
+  ## The set funciton changes the value of the x matrix
+  ## stored in the makeCacheMatrix function.
+  ## It resets the value of the inverse i to null.
+  set <- function(y) { 
+    x <<- y      
+    i <<- NULL   
+  }
+  
+  ## The get function returns the matrix x stored in the main function 
+  get <- function() x
+  
+  ## The setInverse function should be used to set the value of the
+  ## inverse i stored in the main makeCacheMatrix function
+  setInverse <- function(inverse) i <<- inverse 
+  
+  ## The getInverse function returns the value of the inverse
+  ## i stored in the main makeCacheMatrix function
+  getInverse <- function() i
+  
+  # the following line creates a list storing each of the functions
+  list(set = set, get = get,
+       setInverse = setInverse,
+       getInverse = getInverse)
 
 }
 
 
-## Write a short comment describing this function
+## This functin computes the inverse of the special matrix
+## returned by the makeCacheMatrix function. If the inverse has
+## already been calculated (and the matrix has not changed) then
+
+## Args:
+##
+## Returns:
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
